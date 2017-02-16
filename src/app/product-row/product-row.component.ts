@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import {Product} from '../products-list/product.model';
+
+@Component({
+  selector: 'app-product-row',
+  inputs: ['product'],
+  host: {'class': 'item'},
+  template: `
+  <app-product-image [product]="product"></app-product-image>
+  <div class="content">
+    <div class="header">{{ product.name }}</div>
+    <div class="meta">
+      <div class="product-sku">SKU #{{ product.sku }}</div>
+    </div>
+    <div class="description">
+      <app-product-department [product]="product"></app-product-department>
+    </div>
+  </div>
+  <app-price-display [price]="product.price"></app-price-display>
+  `
+})
+export class ProductRowComponent implements OnInit {
+  product: Product;
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
