@@ -67,3 +67,14 @@ cf {
     *zoom: 1;
 }
 
+.ui.items{
+	clear: both;
+}
+
+.cart-items-number {
+	height: 50px;
+	width: 50px;
+	border: 2px solid black;
+	float: right;
+}
+

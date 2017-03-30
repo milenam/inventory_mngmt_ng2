@@ -3,6 +3,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import {Product} from './products-list/product.model';
+import {CartService} from './cart.service';
 
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
@@ -13,12 +14,14 @@ import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
   selector: 'app-root',
   template: `
   <div class="inventory-app">
+  	<app-cart></app-cart>
     <app-products-list 
       [productList]="products" 
       (onProductSelected)="productWasSelected($event)">
     </app-products-list> 
   </div>
-  `
+  `,
+  providers: [CartService]
 })
 export class AppComponent {
   products: Product[];

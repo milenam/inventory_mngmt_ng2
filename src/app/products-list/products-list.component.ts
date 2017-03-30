@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import {CartService} from '../cart.service';
 import {Product} from '../products-list/product.model';
 
 @Component({
@@ -10,7 +11,7 @@ import {Product} from '../products-list/product.model';
     <app-product-row 
       *ngFor="let myProduct of productList" 
       [product]="myProduct" 
-      (click)='clicked(myProduct)'
+      (click)='addToCart(myProduct)'
       [class.selected]="isSelected(myProduct)">
     </app-product-row>
   </div>
@@ -34,13 +35,14 @@ export class ProductsListComponent implements OnInit {
    */
   private currentProduct: Product;
 
-  constructor() {
+  constructor(private _cartService: CartService) {
     this.onProductSelected = new EventEmitter();
   }
 
-  clicked(product: Product): void {
+  addToCart(product: Product): void {
     this.currentProduct = product;
     this.onProductSelected.emit(product);
+    this._cartService.addItem(product);
   }
 
   isSelected(product: Product): boolean {
