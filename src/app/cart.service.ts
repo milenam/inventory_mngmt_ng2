@@ -12,7 +12,7 @@ export class CartService {
 
     addItem(item:Product) {
         this.cart.push(item);
-        this.subject.next(this.cart.length);
+        this.subject.next({totalNum: this.cart.length, product: this.cart});
         this.displayNumberOfProducts();
     }
     deleteItem(item:Product){
